@@ -14,7 +14,7 @@ find "$dir" -name '*.hs' \
     | \
     {
         while read filename; do
-            grep -E '^import\s+(qualified)?\s*[A-Z]' "$filename" \
+            grep -Eo '^import\s+(qualified)?\s*([A-Z][A-Za-z]*\.?)+' "$filename" \
                 | sed 's/ qualified//' \
                 | cut -d' ' -f2
         done
