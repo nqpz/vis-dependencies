@@ -13,4 +13,3 @@ curl --silent https://www.stackage.org/lts-7.3 \
     | grep -Po '(?<=>)[^<]+(?=</a>)' \
     | tail -n +5 \
     | head -n -1
-#    | sed -r 's/-[^-]+$//'
