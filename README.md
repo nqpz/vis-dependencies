@@ -1,5 +1,17 @@
 # Dependencies
 
+Datasets are located in the "data" directory.  For example,
+"lts-7.3.json" describes all packages in the LTS 7.3 Stackage snapshot.
+It is a list of packages.  Each package has five fields:
+
+  + The name.
+  + The version.
+  + What modules it exposes (only relevant if the package is a library).
+  + What modules it imports.
+  + Its dependency dictionary.  Each key-value pair in the dependency
+    dictionary consists of the package name of the dependency (the key)
+    and a list of the modules from that package in use (the value).
+
 **Dataset extraction note**: Depended-upon modules are only referenced
 by name, and not also by the required version range.  This is a
 simplification.  It is still valid, since everything is contained within
