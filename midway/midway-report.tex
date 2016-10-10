@@ -35,7 +35,18 @@ We have looked at a series of articles to determine what could quantitatively
 describe a ``good'' software library.
 
 TODO, include the ones we already found? write a bit about them
-
+We have looked at some different papers, looking at visualizing sofware dependencies.
+Their main goal is to discern the dependencies from classes and objects. The papers assert
+that the typical representation of depencies in software is made using graph structure.
+The articles try to present new ways of representing such graphs. [Paper1] uses a specific
+sort of tree to filter the amount of nodes down to a smaller subset such that it becomes
+clearer from a user perspective to understand the visualization. This is important as the
+number of nodes can become overwhelming, though we suffer some information loss using this
+method. [Paper2] propeses a new graph constructing language, to help creating visualizations
+showing graphs. This new graph language is argued to be more efficient in both layout and
+setup, as it can take several arguments at a time, instead of specifying each argument.
+This method uses different channels to encode the properties of the dependency graph it
+shows. It uses color to map different categories and size to mark the usage of these.
 
 \section{Dataset}
 
