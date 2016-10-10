@@ -14,7 +14,7 @@ find "$dir" -name '*.hs' \
     | \
     {
         while read filename; do
-            grep -E '^import +qualified? *[A-Z]' "$filename" \
+            grep -E '^import\s+(qualified)?\s*[A-Z]' "$filename" \
                 | sed 's/ qualified//' \
                 | cut -d' ' -f2
         done
@@ -22,3 +22,5 @@ find "$dir" -name '*.hs' \
     | sort \
     | uniq \
     | grep .
+
+exit 0
