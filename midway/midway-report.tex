@@ -1,0 +1,138 @@
+\documentclass[a4paper,12pt]{article}
+
+\title{\textbf{Visualization}: Exploring library dependencies in modern software projects\\\emph{Midway report}}
+\author{Ask Neve Gamby, Rune Filtenborg Hansen,\\
+Henrik Urms, and Niels Gustav Westphal Serup}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{microtype}
+\usepackage{underscore}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parskip}{1ex}
+\setlength{\parindent}{0pt}
+\setlength{\parfillskip}{30pt plus 1 fil}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+This project is about getting an overview of the structure of depended-upon code
+in a large software project, and help developers make informed decisions about
+what software libraries (not) to use.
+
+
+\subsection{Related Work}
+
+We have looked at a series of articles to determine what could quantitatively
+describe a ``good'' software library.
+
+TODO, include the ones we already found? write a bit about them
+
+
+\section{Dataset}
+
+Our datasets include the approximately 2000 Haskell programming language
+packages on the Stackage dependency manager at \url{https://www.stackage.org/}.
+
+For each package it is possible to get the following attributes:
+
+\begin{itemize}
+\item What other packages the package depends on.
+\item How many other packages depend on this package.
+\item How much this package \emph{uses} each of its depended-upon
+packages.
+\item How long the package has been in development.
+\item How many public releases there are of this package.
+\item In some cases it is also possible to see how many people have contributed
+to the package, although this is only the case if the package includes a link to
+its source management system page, e.g. a GitHub page.
+\end{itemize}
+
+
+\section{Tasks}
+
+\subsection{Target Group}
+
+Our target group can be describes as developers of modern software, more
+specifically developers interested in improving whatever project they are
+working on.  This especially includes:
+
+\begin{itemize}
+\item Developers having done lots of code sprints over a period of months, and
+now want to take more thorough look at the code as a whole.
+\item Developers taking over as maintainers of a new project in need of
+refactoring.
+\end{itemize}
+
+
+\subsection{Domain}
+
+To aid these developers, it would be nice to show them all kinds of stats about
+a software project.  To limit ourselves, we have chosen to only show the effects
+of the dependencies.
+
+Using the attributes of each package in the dataset, we would like to show our
+definition of a healthy package, and how much each dependency is used.
+
+We can also show conflicts between dependencies.  This should not be a problem
+for packages on Stackage, but it might happen for local, untested projects where
+packages are added and removed rapidly during development.  This is also solved
+with conventional command-line tools, but can be nice to show in a visualization
+as well to get a more complete picture.
+
+
+\section{Design}
+
+We have included a design sketch in figure~\ref{fig:sketch0}.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{sketch0.pdf}
+\caption{A sketch of the visualization.}
+\label{fig:sketch0}
+\end{center}
+\end{figure}
+
+In this sketch, the main package ``futhark'' that we want to inspect is at the
+top, and its dependencies are at the bottom.  Each package has a color
+describing its maturity.  When you click on the package, the attributes
+determining the maturity (as described in the previous sections) should be
+expanded and described.
+
+Instead of lines with varying sizes, we could also vary the sizes of the the
+dependency boxes, and not care that much whether they are located perfectly
+below the main package.  This might make the visualization easier to implement
+and still provide enough visual clues.
+
+The visualization could also be expanded to show conflicts between dependencies
+as e.g. dotted lines, since this is also useful knowledge.
+
+
+\section{A Scenario}
+
+TODO, think of something, probably something with many developers and a messy
+development strategy, and then a refactor
+
+
+\section{Implementation}
+
+\subsection{Data extraction}
+
+I'm working on this --Niels
+
+\subsection{Visualization coding}
+
+We expect to program the visualization in D3.js.
+
+TODO: Do we?
+
+
+\end{document}
