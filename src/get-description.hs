@@ -22,13 +22,20 @@ main = do
   desc <- case args of
             [inp] -> readPackageDescription V.normal inp
             _ -> fail "no file"
-  lib <- case condLibrary desc of
-           Just x -> return $ condTreeData x
-           Nothing -> fail "no library"
+            
+  let (libDeps, libModules) =
+        case condLibrary desc of
+          Just x -> let lib = condTreeData x
+                    in (targetBuildDepends $ libBuildInfo lib,
+                        exposedModules lib)
+          Nothing -> ([], [])
 
-  let modules = map (intercalate "." . M.components) $ exposedModules lib
+  let exeDeps = concatMap (targetBuildDepends . buildInfo . condTreeData . snd)
+                $ condExecutables desc
+
+  let modules = map (intercalate "." . M.components) libModules
   putStrLn $ intercalate " " modules
 
   let dependencies = map (P.unPackageName . dependencyPackageName)
-                     $ targetBuildDepends $ libBuildInfo lib
+                     (libDeps ++ exeDeps)
   putStrLn $ intercalate " " dependencies
