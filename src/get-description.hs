@@ -32,10 +32,14 @@ main = do
 
   let exeDeps = concatMap (targetBuildDepends . buildInfo . condTreeData . snd)
                 $ condExecutables desc
+  let testDeps = concatMap (targetBuildDepends . testBuildInfo . condTreeData . snd)
+                 $ condTestSuites desc
+  let benchDeps = concatMap (targetBuildDepends . benchmarkBuildInfo . condTreeData . snd)
+                  $ condBenchmarks desc
 
   let modules = map (intercalate "." . M.components) libModules
   putStrLn $ intercalate " " modules
 
   let dependencies = map (P.unPackageName . dependencyPackageName)
-                     (libDeps ++ exeDeps)
+                     (libDeps ++ exeDeps ++ testDeps ++ benchDeps)
   putStrLn $ intercalate " " dependencies
