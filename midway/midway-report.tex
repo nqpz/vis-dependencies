@@ -66,19 +66,20 @@ packages on the Stackage dependency manager at \url{https://www.stackage.org/}.
 For each package it is possible to get the following attributes:
 
 \begin{itemize}
-\item What other packages the package depends on.
-\item How many other packages depend on this package.
-\item How much this package \emph{uses} each of its depended-upon
-packages.
-\item How long the package has been in development.
-\item How many public releases there are of this package.
-\item In some cases it is also possible to see how many people have contributed
-to the package, although this is only the case if the package includes a link to
-its source management system page, e.g. a GitHub page.
+\item The name.
+\item The version.
+\item What software modules it exposes (only relevant if the package is a
+library).  (In Haskell, a package can have more than one module.)
+\item What modules it imports.
+\item Its dependency dictionary.  Each key-value pair in the dependency
+dictionary consists of the package name of the dependency (the key) and a list
+of the modules from that package in use (the value).
 \end{itemize}
 
-The dataset is located here:
+The dataset is located here for the current snapshot (internally consistent list
+of packages) of the Haskell packages:
 \url{https://raw.githubusercontent.com/nqpz/vis-dependencies/master/data/lts-7.3.json}
+
 
 \section{Tasks}
 
@@ -132,8 +133,7 @@ We have included a design sketch in figure~\ref{fig:sketch0}.
 In this sketch, the main package ``futhark'' that we want to inspect is at the
 top, and its dependencies are at the bottom.  Each package has a color
 describing its maturity.  When you click on the package, the attributes
-determining the maturity (as described in the previous sections) should be
-expanded and described.
+determining the maturity should be expanded and described.
 
 Instead of lines with varying sizes, we could also vary the sizes of the the
 dependency boxes, and not care that much whether they are located perfectly
@@ -143,11 +143,36 @@ and still provide enough visual clues.
 The visualization could also be expanded to show conflicts between dependencies
 as e.g. dotted lines, since this is also useful knowledge.
 
+\subsection{Measuring the Maturity}
 
-\section{A Scenario}
+We would like to measure the maturity of a package dependency, i.e. its
+stability, so that we can give it a proper color in the visualization.  We have
+access to the following attributes:
 
-TODO, think of something, probably something with many developers and a messy
-development strategy, and then a refactor
+\begin{itemize}
+\item The number of reverse dependencies of a package.  There might be a
+correlation between a package being popular and that same package being mature,
+and we can use this attribute to determine popularity.
+\item In some cases it is also possible to see how many people have contributed
+to the package, although this is only the case if the package includes a link to
+its source management system page, e.g. a GitHub page.  This is not currently
+included in the linked dataset, but we can extract the information and include
+it if we decide to.
+\end{itemize}
+
+We are still working on defining this attribute based on experiences in the
+literature.
+
+
+\section{A Scenario: Getting an Overview}
+
+This scenario describes the case where a large open source software project has
+received a new maintainer.  Due to years of uncoordinated additions to the code,
+the new maintainer would like to clean up.  This clean up involves removing
+little-used packages.  The maintainer uses our visualization, initially focusing
+on their own project package.  They notice some little-used, little-mature
+dependencies, click on each of them, and try to figure out through normal means
+whether these borderline-okay dependencies can be replaced.
 
 
 \section{Implementation}
