@@ -32,21 +32,31 @@ what software libraries (not) to use.
 \subsection{Related Work}
 
 We have looked at a series of articles to determine what could quantitatively
-describe a ``good'' software library.
+describe a ``good'' software library.  While we still need to work on that
+definition, we have looked at a few papers, these investigate different parts at
+visualizing sofware dependencies.
 
-TODO, include the ones we already found? write a bit about them
-We have looked at a few papers, these investigate different parts at visualizing sofware dependencies.
-Their main goal is to discern the dependencies from classes and objects. The papers assert
-that the typical representation of depencies in software is made using graph structure.
-The articles try to present new ways of representing such graphs. [Paper1] uses a specific
-sort of tree to filter the amount of nodes down to a smaller subset such that it becomes
-clearer from a user perspective to understand the visualization. This is important as the
-number of nodes can become overwhelming, though we suffer some information loss using this
-method. [Paper2] propeses a new graph constructing language, to help creating visualizations
-showing graphs. This new graph language is argued to be more efficient in both layout and
-setup, as it can take several arguments at a time, instead of specifying each argument.
-This method uses different channels to encode the properties of the dependency graph it
-shows. It uses color to map different categories and size to mark the usage of these.
+Their main goal is to discern the dependencies from classes and objects. The
+papers assert that the typical representation of depencies in software is made
+using graph structure.  The articles try to present new ways of representing
+such graphs.
+
+The first
+paper\footnote{\url{http://www.tzi.de/st/papers/domtree-vissoft05.pdf}} uses a
+specific sort of tree to filter the amount of nodes down to a smaller subset
+such that it becomes clearer from a user perspective to understand the
+visualization. This is important as the number of nodes can become overwhelming,
+though we suffer some information loss using this method.
+
+The second
+paper\footnote{\url{http://rmod.inria.fr/archives/papers/Berg14a-Vissoft-DomainSpecific.pdf}}
+proposes a new graph constructing language, to help creating visualizations
+showing graphs. This new graph language is argued to be more efficient in both
+layout and setup, as it can take several arguments at a time, instead of
+specifying each argument.  This method uses different channels to encode the
+properties of the dependency graph it shows. It uses color to map different
+categories and size to mark the usage of these.
+
 
 \section{Dataset}
 
@@ -142,15 +152,7 @@ development strategy, and then a refactor
 
 \section{Implementation}
 
-\subsection{Data extraction}
-
-I'm working on this --Niels
-
-\subsection{Visualization coding}
-
 We expect to program the visualization in D3.js.
-
-TODO: Do we?
 
 
 \end{document}
