@@ -159,8 +159,8 @@
     ],
     "name": "configurator",
     "repo": {
-      "type": "Mercurial",
-      "url": "http://bitbucket.org/bos/configurator"
+      "type": "Git",
+      "url": "http://github.com/bos/configurator"
     },
     "version": "0.3.0.0"
   },
@@ -9991,8 +9991,8 @@
     ],
     "name": "quickcheck-simple",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-quickcheck-simple"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-quickcheck-simple"
     },
     "version": "0.1.0.1"
   },
@@ -12225,7 +12225,7 @@
     "name": "Genbank",
     "repo": {
       "type": "Git",
-      "url": "https://github.com/eggzilla/Genbank/tree/1.0.3"
+      "url": "https://github.com/eggzilla/Genbank"
     },
     "version": "1.0.3"
   },
@@ -20724,8 +20724,8 @@
     ],
     "name": "relational-query",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.8.3.1"
   },
@@ -22321,8 +22321,8 @@
     ],
     "name": "fixed-vector-hetero",
     "repo": {
-      "type": "Mercurial",
-      "url": "http://bitbucket.org/Shimuuar/fixed-vector-hetero"
+      "type": "Git",
+      "url": "http://github.com/Shimuuar/fixed-vector"
     },
     "version": "0.3.1.1"
   },
@@ -25345,8 +25345,8 @@
     ],
     "name": "type-level-numbers",
     "repo": {
-      "type": "Git",
-      "url": "https://github.com/Shimuuar/type-level-numbers"
+      "type": "Mercurial",
+      "url": "http://bitbucket.org/Shimuuar/type-level-numbers"
     },
     "version": "0.1.1.1"
   },
@@ -30145,8 +30145,8 @@
     ],
     "name": "time-locale-compat",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-time-locale-compat"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-time-locale-compat"
     },
     "version": "0.1.1.3"
   },
@@ -30276,8 +30276,8 @@
     ],
     "name": "debian-build",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-debian-build"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-debian-build"
     },
     "version": "0.10.1.0"
   },
@@ -30865,8 +30865,8 @@
     ],
     "name": "names-th",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.2.0.2"
   },
@@ -34248,8 +34248,8 @@
     ],
     "name": "pcap",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/pcap"
+      "type": "Git",
+      "url": "git://github.com/bos/pcap.git"
     },
     "version": "0.4.5.2"
   },
@@ -46796,8 +46796,8 @@
     ],
     "name": "fixed-vector",
     "repo": {
-      "type": "Git",
-      "url": "http://github.com/Shimuuar/fixed-vector"
+      "type": "Mercurial",
+      "url": "http://bitbucket.org/Shimuuar/fixed-vector"
     },
     "version": "0.8.1.0"
   },
@@ -49862,8 +49862,8 @@
     ],
     "name": "mwc-random-monad",
     "repo": {
-      "type": "Git",
-      "url": "git://github.com/Shimuuar/mwc-random-monad"
+      "type": "Mercurial",
+      "url": "http://bitbucket.org/Shimuuar/mwc-random-monad"
     },
     "version": "0.7.3.1"
   },
@@ -53391,8 +53391,8 @@
     ],
     "name": "base16-bytestring",
     "repo": {
-      "type": "Mercurial",
-      "url": "http://bitbucket.org/bos/base16-bytestring"
+      "type": "Git",
+      "url": "http://github.com/bos/base16-bytestring"
     },
     "version": "0.1.1.6"
   },
@@ -54949,8 +54949,8 @@
     ],
     "name": "text-ldap",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-text-ldap"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-text-ldap"
     },
     "version": "0.1.1.8"
   },
@@ -62057,8 +62057,8 @@
     ],
     "name": "relational-query-HDBC",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.6.0.2"
   },
@@ -68912,7 +68912,7 @@
     "name": "ClustalParser",
     "repo": {
       "type": "Git",
-      "url": "https://github.com/eggzilla/ClustalParser/tree/1.1.4"
+      "url": "https://github.com/eggzilla/ClustalParser"
     },
     "version": "1.1.4"
   },
@@ -68934,8 +68934,8 @@
     ],
     "name": "HDBC-session",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.1.1.0"
   },
@@ -71583,8 +71583,8 @@
     ],
     "name": "mwc-random",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/mwc-random"
+      "type": "Git",
+      "url": "git://github.com/bos/mwc-random"
     },
     "version": "0.13.4.0"
   },
@@ -72217,8 +72217,8 @@
     ],
     "name": "text-format",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/text-format"
+      "type": "Git",
+      "url": "https://github.com/bos/text-format"
     },
     "version": "0.3.1.1"
   },
@@ -72369,8 +72369,8 @@
     ],
     "name": "blaze-textual",
     "repo": {
-      "type": "Mercurial",
-      "url": "http://bitbucket.org/bos/blaze-textual"
+      "type": "Git",
+      "url": "http://github.com/bos/blaze-textual"
     },
     "version": "0.2.1.0"
   },
@@ -74745,8 +74745,8 @@
     ],
     "name": "relational-schemas",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.1.3.1"
   },
@@ -81730,8 +81730,8 @@
     ],
     "name": "sql-words",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.1.4.1"
   },
@@ -92490,8 +92490,8 @@
     ],
     "name": "broadcast-chan",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/merijnv/broadcast-chan"
+      "type": "Git",
+      "url": "ssh://github.com:merijn/broadcast-chan.git"
     },
     "version": "0.1.1"
   },
@@ -97533,8 +97533,8 @@
     ],
     "name": "aeson",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/aeson"
+      "type": "Git",
+      "url": "git://github.com/bos/aeson.git"
     },
     "version": "0.11.2.1"
   },
@@ -97664,8 +97664,8 @@
     ],
     "name": "base64-bytestring",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/base64-bytestring"
+      "type": "Git",
+      "url": "git://github.com/bos/base64-bytestring"
     },
     "version": "1.0.0.1"
   },
@@ -99599,8 +99599,8 @@
     ],
     "name": "persistable-record",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.4.0.3"
   },
@@ -102462,8 +102462,8 @@
     ],
     "name": "wreq",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/wreq"
+      "type": "Git",
+      "url": "https://github.com/bos/wreq"
     },
     "version": "0.4.1.0"
   },
@@ -103742,8 +103742,8 @@
     ],
     "name": "th-data-compat",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-th-data-compat"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-th-data-compat"
     },
     "version": "0.0.2.2"
   },
@@ -104859,8 +104859,8 @@
     ],
     "name": "math-functions",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/math-functions"
+      "type": "Git",
+      "url": "https://github.com/bos/math-functions"
     },
     "version": "0.2.0.2"
   },
@@ -109578,8 +109578,8 @@
     ],
     "name": "th-reify-compat",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-th-reify-compat"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-th-reify-compat"
     },
     "version": "0.0.1.1"
   },
@@ -109666,7 +109666,7 @@
     "name": "bloodhound",
     "repo": {
       "type": "Git",
-      "url": "git://github.com/bitemyapp/bloodhound.git"
+      "url": "https://github.com/bitemyapp/bloodhound.git"
     },
     "version": "0.11.0.0"
   },
@@ -113499,8 +113499,8 @@
     ],
     "name": "double-conversion",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/double-conversion"
+      "type": "Git",
+      "url": "https://github.com/bos/double-conversion"
     },
     "version": "2.0.1.0"
   },
@@ -115563,8 +115563,8 @@
     ],
     "name": "BlastHTTP",
     "repo": {
-      "type": "Darcs",
-      "url": "https://github.com/eggzilla/BlastHTTP/tree/1.2.0"
+      "type": "Git",
+      "url": "https://github.com/eggzilla/BlastHTTP"
     },
     "version": "1.2.0"
   },
@@ -122118,8 +122118,8 @@
     ],
     "name": "resource-pool",
     "repo": {
-      "type": "Mercurial",
-      "url": "http://bitbucket.org/bos/pool"
+      "type": "Git",
+      "url": "http://github.com/bos/pool"
     },
     "version": "0.2.3.2"
   },
@@ -123230,7 +123230,7 @@
     "name": "knob",
     "repo": {
       "type": "Bazaar",
-      "url": "https://john-millikin.com/branches/knob/0.1/"
+      "url": "https://john-millikin.com/software/knob/"
     },
     "version": "0.1.1"
   },
@@ -128593,8 +128593,8 @@
     ],
     "name": "histogram-fill",
     "repo": {
-      "type": "Git",
-      "url": "http://github.com/Shimuuar/histogram-fill"
+      "type": "Mercurial",
+      "url": "http://bitbucket.org/Shimuuar/histogram-fill"
     },
     "version": "0.8.4.1"
   },
@@ -129545,7 +129545,7 @@
     "name": "Agda",
     "repo": {
       "type": "Git",
-      "url": "https://github.com/agda/agda/tree/v2.5.1.1"
+      "url": "https://github.com/agda/agda.git"
     },
     "version": "2.5.1.1"
   },
@@ -134966,8 +134966,8 @@
     ],
     "name": "text-icu",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/text-icu"
+      "type": "Git",
+      "url": "https://github.com/bos/text-icu"
     },
     "version": "0.7.0.1"
   },
@@ -136252,8 +136252,8 @@
     ],
     "name": "relational-record",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-relational-record"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-relational-record"
     },
     "version": "0.1.5.1"
   },
@@ -139623,8 +139623,8 @@
     ],
     "name": "statistics",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/statistics"
+      "type": "Git",
+      "url": "https://github.com/bos/statistics"
     },
     "version": "0.13.3.0"
   },
@@ -141625,7 +141625,7 @@
     "name": "ViennaRNAParser",
     "repo": {
       "type": "Git",
-      "url": "https://github.com/eggzilla/ViennaRNAParser/tree/1.2.9"
+      "url": "https://github.com/eggzilla/ViennaRNAParser"
     },
     "version": "1.2.9"
   },
@@ -142292,8 +142292,8 @@
     ],
     "name": "text",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/text"
+      "type": "Git",
+      "url": "https://github.com/bos/text"
     },
     "version": "1.2.2.1"
   },
@@ -143028,8 +143028,8 @@
     ],
     "name": "aeson-generic-compat",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-aeson-generic-compat"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-aeson-generic-compat"
     },
     "version": "0.0.1.0"
   },
@@ -143634,8 +143634,8 @@
     ],
     "name": "json-rpc-generic",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/khibino/haskell-json-rpc-generic"
+      "type": "Git",
+      "url": "https://github.com/khibino/haskell-json-rpc-generic"
     },
     "version": "0.2.1.2"
   },
@@ -144466,8 +144466,8 @@
     ],
     "name": "quickcheck-unicode",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/quickcheck-unicode"
+      "type": "Git",
+      "url": "https://github.com/bos/quickcheck-unicode"
     },
     "version": "1.0.0.1"
   },
@@ -150984,8 +150984,8 @@
     ],
     "name": "filemanip",
     "repo": {
-      "type": "Mercurial",
-      "url": "https://bitbucket.org/bos/filemanip"
+      "type": "Git",
+      "url": "git://github.com/bos/filemanip.git"
     },
     "version": "0.3.6.3"
   },
