@@ -4,6 +4,7 @@
 module Main where
 
 import System.Environment (getArgs)
+import Control.Monad
 import Data.List
 import Distribution.PackageDescription
 import Distribution.PackageDescription.Parse
@@ -43,3 +44,10 @@ main = do
   let dependencies = map (P.unPackageName . dependencyPackageName)
                      (libDeps ++ exeDeps ++ testDeps ++ benchDeps)
   putStrLn $ intercalate " " dependencies
+
+  forM_ (sourceRepos $ packageDescription desc) $ \s -> do
+    case (repoType s, repoLocation s) of
+      (Just typ, Just loc) -> do
+        putStrLn $ show typ
+        putStrLn loc
+      _ -> return ()
