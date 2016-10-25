@@ -39,5 +39,9 @@ for dir in *; do
         read dependencies
         echo $modules > "$resdir/modules"
         echo $dependencies > "$resdir/dependencies"
+        if read repo_type && read repo_url; then
+            echo "$repo_type" > "$resdir/repo_type"
+            echo "$repo_url" > "$resdir/repo_url"
+        fi
     }
 done

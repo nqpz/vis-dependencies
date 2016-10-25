@@ -11,6 +11,7 @@ It is a list of packages.  Each package has five fields:
   + Its dependency dictionary.  Each key-value pair in the dependency
     dictionary consists of the package name of the dependency (the key)
     and a list of the modules from that package in use (the value).
+  + Its source code repository if it has one.
 
 **Dataset extraction note**: Depended-upon modules are only referenced
 by name, and not also by the required version range.  This is a
