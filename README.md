@@ -25,7 +25,7 @@ the github data contains the properties
   + The name(which is the same as the original package
   + A json object containing several fields
 
-Interesting fields is
+Interesting fields are
 
   + "stargazers_count"
   + "subscribers_count"
