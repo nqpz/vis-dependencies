@@ -1,0 +1,9 @@
+description of haskell package/module:
+
+A Haskell \emph{package} can contain a Haskell \emph{library}.  A Haskell
+library consists of one or more Haskell \emph{modules}.  Each module contains
+functions and values that can be used by modules from other packages.
+
+
+
+use the proper tex template from absalon
