@@ -19,10 +19,10 @@ simplification.  It is still valid, since everything is contained within
 the same Stackage snapshot, and so any reference will be consistent and
 okay.
 
-Github data
+# Github data
 the github data contains the properties
 
-  + The name(which is the same as the original package
+  + The name(which is the same as the original package)
   + A json object containing several fields
 
 Interesting fields are
