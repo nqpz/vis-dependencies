@@ -36,9 +36,11 @@ for dir in *; do
     "$base/get-imports.sh" "$dir" > "$resdir/imports"
     "$base/get-description" "$cabal_file" | {
         read modules
-        read dependencies
+        read dependencies_core
+        read dependencies_testbench
         echo $modules > "$resdir/modules"
-        echo $dependencies > "$resdir/dependencies"
+        echo $dependencies_core > "$resdir/dependencies_core"
+        echo $dependencies_testbench > "$resdir/dependencies_testbench"
         if read repo_type && read repo_url; then
             echo "$repo_type" > "$resdir/repo_type"
             echo "$repo_url" > "$resdir/repo_url"

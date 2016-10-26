@@ -41,9 +41,12 @@ main = do
   let modules = map (intercalate "." . M.components) libModules
   putStrLn $ intercalate " " modules
 
-  let dependencies = map (P.unPackageName . dependencyPackageName)
-                     (libDeps ++ exeDeps ++ testDeps ++ benchDeps)
-  putStrLn $ intercalate " " dependencies
+  let dependenciesCore = map (P.unPackageName . dependencyPackageName)
+                     (libDeps ++ exeDeps)
+  let dependenciesTestBench = map (P.unPackageName . dependencyPackageName)
+                     (testDeps ++ benchDeps)
+  putStrLn $ intercalate " " dependenciesCore
+  putStrLn $ intercalate " " dependenciesTestBench
 
   forM_ (sourceRepos $ packageDescription desc) $ \s -> do
     case (repoType s, repoLocation s) of

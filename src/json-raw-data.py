@@ -19,7 +19,12 @@ for pdir in os.listdir(data_dir):
     name = read_file(os.path.join(data_dir, pdir, 'name'))
     version = read_file(os.path.join(data_dir, pdir, 'version'))
     modules = read_file(os.path.join(data_dir, pdir, 'modules')).split()
-    dependencies = read_file(os.path.join(data_dir, pdir, 'dependencies')).split()
+    dependencies_core = read_file(os.path.join(data_dir, pdir, 'dependencies_core')).split()
+    if name in dependencies_core:
+        dependencies_core.remove(name)
+    dependencies_testbench = read_file(os.path.join(data_dir, pdir, 'dependencies_testbench')).split()
+    if name in dependencies_testbench:
+        dependencies_testbench.remove(name)
     imports = read_file(os.path.join(data_dir, pdir, 'imports')).split('\n')
     repo_type = read_file(os.path.join(data_dir, pdir, 'repo_type'))
     repo_url = read_file(os.path.join(data_dir, pdir, 'repo_url'))
@@ -35,7 +40,8 @@ for pdir in os.listdir(data_dir):
         'name': name,
         'version': version,
         'modules': modules,
-        'dependencies': dependencies,
+        'dependencies_core': dependencies_core,
+        'dependencies_testbench': dependencies_testbench,
         'imports': imports,
         'repo': repo
     }
