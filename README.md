@@ -18,3 +18,18 @@ by name, and not also by the required version range.  This is a
 simplification.  It is still valid, since everything is contained within
 the same Stackage snapshot, and so any reference will be consistent and
 okay.
+
+Github data
+the github data contains the properties
+
+  + The name(which is the same as the original package
+  + A json object containing several fields
+
+Interesting fields is
+
+  + "stargazers_count"
+  + "subscribers_count"
+  + "forks"
+  + "watchers"
+  + "open_issues_count"
+  
