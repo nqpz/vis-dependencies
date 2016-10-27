@@ -7,3 +7,6 @@ functions and values that can be used by modules from other packages.
 
 
 use the proper tex template from absalon
+
+
+Sometimes module use is 0, but that can be because of use of packages with just compiler extensions.
