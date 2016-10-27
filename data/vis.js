@@ -36,15 +36,21 @@ var bar_length = 600;
 function visualize(packages, package_index) {
   pac = packages[package_index];
 
-  d3.select('body')[0][0].innerHTML = '';
-  
+  d3.select('body')[0][0].innerHTML = ''; // Hack.
+
   var header = d3.select('body')
       .append('h1');
   header.text('Dependencies of ' + pac['name']);
 
+  var para = d3.select('body')
+      .append('p');
+  para.text('How this works: Every dependency of the package is listed below.  ' +
+            'Click on a dependency name to show the dependencies of that package.  ' +
+            'Every value is relative to the maximum value among the dependencies of this package only.');
+
   var dependency_list = d3.select('body')
       .append('dl');
-  
+
   var list_values = dependency_list.selectAll('dd')
       .data(pac['dependencies'])
       .enter()
@@ -78,5 +84,5 @@ function visualize(packages, package_index) {
   value_values.append('div')
     .attr('class', 'actual_value')
     .text(function(d) { return d[1][0] + '/' + d[1][1]; })
-  
+
 }
