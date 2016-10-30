@@ -1,0 +1,118 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="d3.layout.adjacencyMatrix.js" ></script>
+</head>
+<style>
+  svg {
+    height: 1400px;
+    width: 1400px;
+    border: 1px solid gray;
+  }
+  g.am-axis text {
+    font-size: 8px;
+  }
+
+  .domain {
+    fill: none;
+  }
+
+  .tick > line{
+    stroke: black;
+    stroke-width: 1px;
+    stroke-opacity: .25;
+  }
+
+</style>
+<body>
+
+<div id="viz">
+  <svg>
+  </svg>
+</div>
+<div id="controls" />
+</body>
+  <footer>
+
+<script>
+
+var p1 = 'hlint';
+var p2 = 'reform-happstack';
+
+function descendants(root,data) {
+  var nodes = [root.name], nodeSet = new Set(), node;
+  while (node = nodes.pop()) {
+    nodeSet.add(node);
+    var a = data.find(x => x.name == node);
+    if (a) Object.keys(a.dependencies_core).forEach(function(x) {nodes.push(x);});
+  }
+  return [...nodeSet].map(x => ({name:x, group:1}));
+};
+
+function nodesAndLinks(data) {
+  var root1 = data.data.find(x => x.name == p1);
+  var root2 = data.data.find(x => x.name == p2);
+  var map = {};
+  data.ordering.forEach((x,i) => map[x] = i);
+  var nodes = descendants(root1,data.data).concat(descendants(root2,data.data));
+  var tmp = new Set(nodes);
+  nodes = [...tmp];
+  nodes.sort((a,b) => map[a.name] - map[b.name]);
+  nodes.forEach((x,i) => x.index = i);
+  var links = []; //[{source: 0, target: 0}];
+  nodes.forEach(function(x) {
+    var node = data.data.find(y => y.name == x.name);
+    if (node) Object.keys(node.dependencies_core).forEach(function(c) {
+      links.push({source: x.index, target: nodes.find(z => c == z.name).index});
+    });
+  });
+  return {nodes: nodes, links: links};
+};
+
+//d3.json("miserables.json", createAdjacencyMatrix);
+d3.json("/data/lts-7.3-ordering.json", createAdjacencyMatrix);
+
+function createAdjacencyMatrix(json) {
+  var data = nodesAndLinks(json);
+  var adjacencyMatrix = d3.layout.adjacencyMatrix()
+  .size([800,800])
+  .nodes(data.nodes)
+  .links(data.links)
+  .directed(true)
+  .nodeID(function (d) {return d.name});
+
+  var matrixData = adjacencyMatrix();
+
+  var someColors = d3.scale.category20b();
+
+  d3.select("svg")
+  .append("g")
+  .attr("transform", "translate(50,50)")
+  .attr("id", "adjacencyG")
+  .selectAll("rect")
+  .data(matrixData)
+  .enter()
+  .append("rect")
+  .attr("width", function (d) {return d.width})
+  .attr("height", function (d) {return d.height})
+  .attr("x", function (d) {return d.x})
+  .attr("y", function (d) {return d.y})
+  .style("stroke", "black")
+  .style("stroke-width", "1px")
+  .style("stroke-opacity", .1)
+  .style("fill", function (d) {return someColors(d.source.group)})
+  .style("fill-opacity", function (d) {return d.weight * .8});
+
+  d3.select("#adjacencyG")
+  .call(adjacencyMatrix.xAxis);
+
+  d3.select("#adjacencyG")
+  .call(adjacencyMatrix.yAxis);
+
+
+}
+</script>
+  </footer>
+
+</html>
