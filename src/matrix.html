@@ -47,7 +47,7 @@ function descendants(root,data) {
     var a = data.find(x => x.name == node);
     if (a) Object.keys(a.dependencies_core).forEach(function(x) {nodes.push(x);});
   }
-  return [...nodeSet].map(x => ({name:x, group:1}));
+  return [...nodeSet];//.map(x => ({name:x, group:1}));
 };
 
 function nodesAndLinks(data) {
@@ -58,6 +58,7 @@ function nodesAndLinks(data) {
   var nodes = descendants(root1,data.data).concat(descendants(root2,data.data));
   var tmp = new Set(nodes);
   nodes = [...tmp];
+  nodes = nodes.map(x => ({name:x, group:1}));
   nodes.sort((a,b) => map[a.name] - map[b.name]);
   nodes.forEach((x,i) => x.index = i);
   var links = []; //[{source: 0, target: 0}];
