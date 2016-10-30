@@ -26,7 +26,7 @@
 }
 
 </style>
-<svg width="960" height="2000"></svg>
+<svg width="960" height="700"></svg>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
@@ -38,44 +38,95 @@ var svg = d3.select("svg"),
 var tree = d3.tree()
     .size([height, width - 160]);
 
-var stratify = d3.stratify()
-    .parentId(function(d) { return d.id.substring(0, d.id.lastIndexOf(".")); });
-
 var rootName = 'parsec'
 
+function rootNode(data) {
+    //return rootName;
+    return data.find(x => x.name == rootName);
+};
+
 function children(data) {
-    //return node => node ? Object.keys(node.dependencies_core).map(x => data.find(y => y.name == x)) : []
     return node => {
-        var x = data.find(y => y.name == node);
-        return x ? Object.keys(x.dependencies_core) : [];
+        //var x = data.find(y => y.name == node);
+        //if (x) x.name += '*';
+        //return x ? Object.keys(x.dependencies_core) : [];
+        var x = node;
+        var deps = x ? Object.keys(x.dependencies_core || {}) : [];
+        x.deps = deps;
+        return deps.map(x => data.find(y => x == y.name) || { name : x });
         };
 };
 
 function show(d) {
-    return d.data;
+    return d.data.name;
 };
 
 function path(d) {
-        return "M" + d.y + "," + d.x
-            + "C" + (d.y + d.parent.y) / 2 + "," + d.x
-            + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
-            + " " + d.parent.y + "," + d.parent.x;
+    return "M" + d.y + "," + d.x
+        + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+        + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+        + " " + d.parent.y + "," + d.parent.x;
+};
+
+function linkd(d) {
+  return "M" + d.source.y + "," + d.source.x
+      + "C" + (d.source.y + d.target.y) / 2 + "," + d.source.x
+      + " " + (d.source.y + d.target.y) / 2 + "," + d.target.x
+      + " " + d.target.y + "," + d.target.x;
+}
+
+function nodeMap(root) {
+  var map = {};
+  root.eachAfter(function(x) {if (!(x.data.name in map)) map[x.data.name] = x;});
+  return map
+}
+
+function prune(root,map){
+  var l1 = [], l2 = [], next = l1;
+  root.descendants().forEach(function(x){next.push(x); if (next == l1) next = l2; else next = l1;});
+  l2.reverse().concat(l1).forEach(function(node,i) {node.rank = i});
+  root.sort((a,b) => b.rank - a.rank);
+
+  tree(root);
+
+  root.eachBefore(function(x) {
+    var pruned = [], children = [];
+    if (x.children) x.children = x.children.filter(c => map[c.data.name] == c);
+    //if (x.children) x.children.forEach(c => {if (c == map[c.data.name]) children.push(c); else pruned.push(c);});
+    //x.children = children;
+    x.pruned = pruned;
+    if (x.children && x.children.length == 0) x.children = undefined;
+  });
+};
+
+function links(root,map) {
+  var links = [];
+  function nodeLinks(node){
+      //var start = node.pruned.map(x => ({source: node, target: x}));
+      return node.data.deps.map(c => ({source: node, target: map[c]}));
+      //var end = node.pruned.map(x => ({source: x, target: map[x.data.name]}));
+      //return start.concat(end);
+  };
+  root.eachBefore(function(node) {links = links.concat(nodeLinks(node))});
+  return links;
 };
 
 d3.json("/data/lts-7.3.json", function(error, data) {
   if (error) throw error;
 
-  //var root = d3.hierarchy(data.find(x => x.name == rootName),children(data));
-  var root = d3.hierarchy(rootName,children(data));
+  var root = d3.hierarchy(rootNode(data),children(data))
+    .sort((a,b) => b.height - a.height);
  
   tree(root);
-  var data = root.descendants().slice(1);
+  var map = nodeMap(root);
+  prune(root,map);
+  var linkData = links(root,map);
 
   var link = g.selectAll(".link")
-    .data(data)
+    .data(linkData)
     .enter().append("path")
       .attr("class", "link")
-      .attr("d", path);
+      .attr("d", linkd);
 
   var node = g.selectAll(".node")
     .data(root.descendants())
