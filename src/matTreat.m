@@ -7,6 +7,9 @@ depsN = M(:,2);
 score = M(:,3);
 clear M;
 share = csvread('../data/ctd.csv');
+am = csvread('../data/AM.csv');
+amn = csvread('../data/AMN.csv');
+amc = csvread('../data/AMC.csv');
 %%
 
 
@@ -85,4 +88,34 @@ end
 
 figure(6)
 imshow(im)
+%%
 
+figure(1)
+imshow(am)
+
+modi = 25;
+amnIm = zeros(size(amn).*modi);
+for i = 1:size(amn,1)
+    for j = 1:size(amn,2)
+        pi = (i-1)*modi;
+        pj = (j-1)*modi;
+        amnIm(pi+1:pi+modi,pj+1:pj+modi) = amn(i,j);
+    end
+end
+amcIm = zeros([size(amc).*modi,3]);
+color = [0,0,0;
+        1,0,0;
+        0,0,1;
+        1,0,1];
+for i = 1:size(amc,1)
+    for j = 1:size(amc,2)
+        pi = (i-1)*modi;
+        pj = (j-1)*modi;
+        val = amc(i,j)+1;
+        amcIm(pi+1:pi+modi,pj+1:pj+modi,1) = color(val,1);
+        amcIm(pi+1:pi+modi,pj+1:pj+modi,2) = color(val,2);
+        amcIm(pi+1:pi+modi,pj+1:pj+modi,3) = color(val,3);
+    end
+end
+figure(3)
+imshow(amcIm)

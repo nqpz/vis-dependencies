@@ -467,3 +467,112 @@ def writeOL():
     with open("../data/ol.json","w") as f:
         json.dump(order, f)
     return None
+
+
+def adjecencyMatrx(data, order):
+    orderNum = {order[i]:i for i in range(len(order))}
+    result = []
+    for n1 in order:
+        row = []
+        for n2 in order:
+            row.append(0)
+        result.append(row)
+    for name in order:
+        for dep in data[name]["dependencies"].keys():
+            result[orderNum[name]][orderNum[dep]] = 1
+    return result
+
+def writeAM():
+    d =defaultDataGen()
+    (order,_) = ordering(d)
+    m = adjecencyMatrx(d,order)
+    with open("../data/AM.csv","w") as f:
+        for row in m:
+            line = ""
+            for val in row:
+                line += str(val) + ", "
+            f.write(line[:-2] + "\n")
+    return None
+
+def writeAMNamed(name):
+    d =defaultDataGen()
+    (order,_) = ordering(d)
+    t= transitiveDep(d,order)
+    subOrder = []
+    deps = t[name]
+    for i in order:
+        if i in deps:
+            subOrder.append(i)
+    m = adjecencyMatrx(d,subOrder)
+    with open("../data/AMN.csv","w") as f:
+        for row in m:
+            line = ""
+            for val in row:
+                line += str(val) + ", "
+            f.write(line[:-2] + "\n")
+    with open("../data/AMNnames.csv","w") as f:
+        for sname in subOrder:
+            f.write(sname + "\n")
+    return None
+
+
+def amcompare(data,order,deps1,deps2):
+    orderNum = {order[i]:i for i in range(len(order))}
+    result = []
+    for n1 in order:
+        row = []
+        for n2 in order:
+            row.append(0)
+        result.append(row)
+    for name in order:
+        for dep in data[name]["dependencies"].keys():
+            if dep in deps1:
+                result[orderNum[name]][orderNum[dep]] = 1
+            if dep in deps2:
+                result[orderNum[name]][orderNum[dep]] = result[orderNum[name]][orderNum[dep]] +2
+    return result
+
+    
+
+def writeAMCompare(name1,name2):
+    d =defaultDataGen()
+    (order,_) = ordering(d)
+    t= transitiveDep(d,order)
+    subOrder = []
+    deps1 = t[name1]
+    deps2 = t[name2]
+    deps1.append(name1)
+    deps2.append(name2)
+    for i in order:
+        if (i in deps1) or (i in deps2):
+            subOrder.append(i)
+    for i in deps1:
+        if i not in deps2:
+            print i
+    print "/"
+    for i in deps2:
+        if i not in deps1:
+            print i
+    print len(deps1), len(deps2), len(subOrder)
+    m = amcompare(d,subOrder,deps1,deps2)
+    with open("../data/AMC.csv","w") as f:
+        for row in m:
+            line = ""
+            for val in row:
+                line += str(val) + ", "
+            f.write(line[:-2] + "\n")
+    with open("../data/AMCnames.csv","w") as f:
+        for sname in subOrder:
+            f.write(sname + "\n")
+    return None
+    
+def writeTrans():
+    d =defaultDataGen()
+    (order,_) = ordering(d)
+    t= transitiveDep(d,order)
+    with open("../data/trans.json","w") as f:
+        json.dump(t, f)
+    return None
+
+        
+    
