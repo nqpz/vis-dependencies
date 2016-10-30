@@ -571,7 +571,7 @@ def writeTrans():
     (order,_) = ordering(d)
     t= transitiveDep(d,order)
     with open("../data/trans.json","w") as f:
-        json.dump(t, f)
+        json.dump(t, f, indent = 2)
     return None
 
         
