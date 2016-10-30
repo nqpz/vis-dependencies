@@ -30,7 +30,11 @@
 
 </style>
 <body>
-
+<div>
+Pakke 1 <input id="input1" value="hlint"/>
+Pakke 2 <input id="input2" value="reform-happstack"/>
+<input type="button" onclick="clicked" value="submit"/>
+</div>
 <div id="viz">
   <svg>
   </svg>
@@ -84,6 +88,8 @@ function nodesAndLinks(data) {
 function updateExtra(d) {
   //
 };
+
+var globData;
 
 //d3.json("miserables.json", createAdjacencyMatrix);
 d3.json("/data/lts-7.3-ordering.json", createAdjacencyMatrix);
