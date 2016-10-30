@@ -6,9 +6,10 @@
 </head>
 <style>
   svg {
-    height: 1400px;
-    width: 1400px;
+    height: 870px;
+    width: 870px;
     border: 1px solid gray;
+    display: inline-block;
   }
   g.am-axis text {
     font-size: 8px;
@@ -23,6 +24,9 @@
     stroke-width: 1px;
     stroke-opacity: .25;
   }
+  .extra {
+    display: inline-block;
+  }
 
 </style>
 <body>
@@ -30,9 +34,9 @@
 <div id="viz">
   <svg>
   </svg>
+  <div class=".extra">
+  </div>
 </div>
-<div id="controls" />
-</body>
   <footer>
 
 <script>
@@ -55,20 +59,30 @@ function nodesAndLinks(data) {
   var root2 = data.data.find(x => x.name == p2);
   var map = {};
   data.ordering.forEach((x,i) => map[x] = i);
-  var nodes = descendants(root1,data.data).concat(descendants(root2,data.data));
+  var da = descendants(root1,data.data); 
+  var db = descendants(root2,data.data);
+  var nodes = da.concat(db);
   var tmp = new Set(nodes);
   nodes = [...tmp];
+  //{if (da.includes(x)) x.a = 1; if (db.includes(x)) x.b = 1;});
   nodes = nodes.map(x => ({name:x, group:1}));
+  nodes.forEach(x => {x.value = da.includes(x.name) ? (db.includes(x.name) ? 'purple' : 'red') : (db.includes(x.name) ? 'blue' : 'green')});
   nodes.sort((a,b) => map[a.name] - map[b.name]);
   nodes.forEach((x,i) => x.index = i);
   var links = []; //[{source: 0, target: 0}];
   nodes.forEach(function(x) {
     var node = data.data.find(y => y.name == x.name);
     if (node) Object.keys(node.dependencies_core).forEach(function(c) {
-      links.push({source: x.index, target: nodes.find(z => c == z.name).index});
+      var target = nodes.find(z => c == z.name)
+      //var value = (x.a && x.b) ? 1 : (x.a ? 2 : 3);
+      links.push({ source: x.index, target: target.index});
     });
   });
   return {nodes: nodes, links: links};
+};
+
+function updateExtra(d) {
+  //
 };
 
 //d3.json("miserables.json", createAdjacencyMatrix);
@@ -89,7 +103,7 @@ function createAdjacencyMatrix(json) {
 
   d3.select("svg")
   .append("g")
-  .attr("transform", "translate(50,50)")
+  .attr("transform", "translate(70,70)")
   .attr("id", "adjacencyG")
   .selectAll("rect")
   .data(matrixData)
@@ -102,8 +116,10 @@ function createAdjacencyMatrix(json) {
   .style("stroke", "black")
   .style("stroke-width", "1px")
   .style("stroke-opacity", .1)
-  .style("fill", function (d) {return someColors(d.source.group)})
-  .style("fill-opacity", function (d) {return d.weight * .8});
+  //.style("fill", function (d) {return someColors(d.source.group)})
+  .style("fill", function (d) {return d.source.value})//someColors(d.source.value)})
+  .style("fill-opacity", function (d) {return d.weight * .8})
+  .on('click',function(d) {updateExtra(d);});
 
   d3.select("#adjacencyG")
   .call(adjacencyMatrix.xAxis);
