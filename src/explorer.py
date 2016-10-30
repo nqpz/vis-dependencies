@@ -276,6 +276,40 @@ def ordering(data):
         print "left: ", len(misDep)
     return (result, misDep)
 
+def orderingLayer(data):
+    misDep = {name:len(data[name]["dependencies"]) for name in data}
+    result = []
+    layer = []
+    tiebreaker =  lambda i: len(data[i]["revDep"])
+    for name in misDep.keys():
+        if misDep[name] == 0:
+            layer.append(name)
+            del misDep[name]
+    layer.sort(key = tiebreaker, reverse = True)
+    result.append(layer)
+    i = 0
+    while i < len(result):
+        previousLayer = layer
+        layer = []
+        for j in range(len(previousLayer)):
+            name = previousLayer[j]
+            stack = []
+            for rdep in data[name]["revDep"]:
+                if rdep in misDep:
+                    misDep[rdep] -= 1
+                    if misDep[rdep] == 0:
+                        stack.append(rdep)
+            for rdep in sorted(stack, key = tiebreaker, reverse = True):
+                layer.append(rdep)
+                del misDep[rdep]
+        if len(layer):
+            result.append(layer)
+        i += 1
+    if len(misDep) > 0:
+        print "error"
+        print "left: ", len(misDep)
+    return (result, misDep)
+
         
 ##        if d == 0:
 ##            for rdep in data[p]["revDep"]:
@@ -427,4 +461,9 @@ def writeCTD():
             f.write(line[:-2] + "\n")
     return None
 
-
+def writeOL():
+    d =defaultDataGen()
+    (order,_) = orderingLayer(d)
+    with open("../data/ol.json","w") as f:
+        json.dump(order, f)
+    return None
